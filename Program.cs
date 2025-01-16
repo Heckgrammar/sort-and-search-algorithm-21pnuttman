@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Diagnostics.Metrics;
 using System.Drawing;
 
 namespace compare_algorithm
@@ -55,9 +56,31 @@ namespace compare_algorithm
                          }
                     }
                     Console.WriteLine("You number to find was at index: " + count1);
-
-
                 }
+                
+                if (option == 3)
+                {
+                    bool swaps = false;
+                    int count3 = 0;
+                    int temp;
+                    do
+                    {
+                        swaps = false;
+                        for (int j = 0; j < numbers.Length - 1; j++)
+                        {
+                            if (numbers[j] > numbers[j + 1])
+                            {
+                                temp = numbers[j];
+                                numbers[j] = numbers[j + 1];
+                                numbers[j + 1] = temp;
+                                swaps = true;
+                            }
+                            count3++;
+                        }
+                    } while (swaps);
+                    Console.WriteLine("Your sorted array is: " + numbers);
+                }
+                
             }         
          
         }
