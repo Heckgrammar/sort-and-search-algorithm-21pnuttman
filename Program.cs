@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Drawing;
 
 namespace compare_algorithm
 {
@@ -6,19 +7,87 @@ namespace compare_algorithm
     {
         static void Main(string[] args)
         {
-            Random n = new Random();
-            Stopwatch sw = new Stopwatch();
+            int option = 0;
+            while (option != 5)
+            {
+                //Random n = new Random();
+                //Stopwatch sw = new Stopwatch();
+                Console.WriteLine("Please input the correct number for your desired option:");
+                Console.WriteLine("1: Linear Search");
+                Console.WriteLine("2: Binary Search");
+                Console.WriteLine("3: Bubble Sort");
+                Console.WriteLine("4: Merge Sort");
+                Console.WriteLine("5: Quit");
+                option = Convert.ToInt32(Console.ReadLine());
+
+                Console.WriteLine("How many numbers in the array?");
+                int size = Convert.ToInt32(Console.ReadLine());
+                int[] numbers = new int[size];
+                for (int i = 0; i < size; i++)
+                {
+                    Console.WriteLine("Enter the number:");
+                    numbers[i] = Convert.ToInt32(Console.ReadLine());
+                }
+                Console.WriteLine("Your array: ");
+                foreach (int i in numbers)
+                {
+                    Console.WriteLine(i);
+                }
+                //Console.WriteLine(CreateArray);
+                //Console.WriteLine(menu);
+
+                bool found1 = false;
+                int count1 = 0;
+                if (option == 1)
+                {
+                    Console.WriteLine("Enter the number you wish to find in the array you previously entered:");
+                    int numtofind = Convert.ToInt32(Console.ReadLine());
+                    while (found1 == false)
+                    {
+                         if (numtofind == numbers[count1])
+                         {
+                            found1 = true;
+                         }
+                         else
+                         {
+                            found1 = false;
+                            count1++;
+                         }
+                    }
+                    Console.WriteLine("You number to find was at index: " + count1);
 
 
+                }
+            }         
+         
         }
-        static int[] CreateArray(int size, Random r)
-        {
-            
-        }
-        static void menu()
-        {
+        //static int[] CreateArray(int size)
+        //{
+          
+        //    int[] numbers = new int[size];
+        //    for (int i = 0; i < size; i++)
+        //    {
+        //        Console.WriteLine("Enter the number:");
+        //        numbers[i] = Convert.ToInt32(Console.ReadLine());
+        //    }
+        //    Console.WriteLine("Your array: ");
+        //    foreach (int i in numbers)
+        //    {
+        //        Console.WriteLine(i);
+        //    }
+        //    return numbers;
 
-        }
+        //}
+        //static void menu()
+        //{
+        //    Console.WriteLine("Please input the correct number for your desired option:");
+        //    Console.WriteLine("1: Linear Search");
+        //    Console.WriteLine("2: Binary Search");
+        //    Console.WriteLine("3: Bubble Sort");
+        //    Console.WriteLine("4: Merge Sort");
+        //    Console.WriteLine("5: Quit");
+         
+        //}
         
         static void BubbleSort(int[] a)
         {
@@ -78,14 +147,16 @@ namespace compare_algorithm
                 Merge(a, low, mid, high);
             }
         }
-        static bool LinearSearch(int[] a, int numToFind)
-        {
+        //static bool LinearSearch(int[] a, int numToFind)
+        //{
+        //    Console.WriteLine("Enter your number to find from you array");
+        //    numToFind = Convert.ToInt32(Console.ReadLine());
+        //}
 
-        }
-        static bool BinarySearch(int[] a, int numToFind)
-        {
-            
-        }
-            
+        //static bool BinarySearch(int[] a, int numToFind)
+        //{
+
+        //}
+
     }
 }
