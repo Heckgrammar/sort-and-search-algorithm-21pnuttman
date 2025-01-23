@@ -22,6 +22,11 @@ namespace compare_algorithm
                 Console.WriteLine("5: Quit");
                 option = Convert.ToInt32(Console.ReadLine());
 
+                if (option == 5)
+                {
+                    break;
+                }
+
                 Console.WriteLine("How many numbers in the array?");
                 int size = Convert.ToInt32(Console.ReadLine());
                 int[] numbers = new int[size];
@@ -89,31 +94,43 @@ namespace compare_algorithm
                             count3++;
                         }
                     } while (swaps);
+                    //Console.WriteLine("Your sorted array: ");
+                    //foreach (int i in numbers)
+                    //{
+                    //    Console.WriteLine(i);
+                    //}
                     // finished ordering now need to find value
-                    //int middle = numbers.Length / 2;
-                    //int middlevalue = numbers[middle];
-                    //int LIQR = middle / 2;
-                    //int LIQRvalue = numbers[LIQR];
-                    //int HIQR = middle * (3 / 2);
-                    //int HIQRvalue = numbers[HIQR];
-                    //if (middlevalue == numtofind)
-                    //{
-                    //    found2 = true;
-                    //}
-                    //else if (numtofind > middlevalue)
-                    //{
-                    //    if (numtofind == HIQRvalue)
-                    //    {
-                    //        found2 = true;
-                    //    }
-                    //}
-                    //else if (numtofind < middlevalue)
-                    //{
-                    //    if (numtofind == LIQRvalue)
-                    //    {
-                    //        found2 = true;
-                    //    }
-                    //}
+                    int lb = 0;
+                    int ub = numbers.Length - 1;
+                    int mid =(ub+lb)/2;
+                   
+                    while (found2 == false)
+                    {
+                        if (numtofind >  numbers[mid])
+                        {
+                            lb = mid;
+                            mid = (lb+ub)/2;
+                        }
+                        else if (numtofind < numbers[mid])
+                        {
+                            ub = mid;
+                            mid = (ub+lb)/2;
+                        }
+                        else if (numtofind == numbers[mid]) 
+                        {
+                            found2 = true;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Number not in array, please restart program.");
+                        }
+                        if (ub == lb + 1)
+                        {
+                            mid = ub;
+                        }
+                        
+                    }
+                    Console.WriteLine($"Number found at index: {mid}");
                 }
 
                 if (option == 3)
@@ -146,7 +163,7 @@ namespace compare_algorithm
 
                 if (option == 4)
                 {
-
+                    Console.WriteLine(MergeSortRecursive(numbers, lower, upper));
                 }
                 
             }         
@@ -228,14 +245,19 @@ namespace compare_algorithm
                 j++; k++;
             }
         }
-        static void MergeSortRecursive(int[] a, int low, int high)
+        static void MergeSortRecursive(int[] numbers, int lower, int upper)
         {
-            if (low < high)
+            if (lower < upper)
             {
-                int mid = (low + high) / 2;
-                MergeSortRecursive(a, low, mid);
-                MergeSortRecursive(a, mid + 1, high);
-                Merge(a, low, mid, high);
+                int mid = (lower + upper) / 2;
+                MergeSortRecursive(numbers, lower, mid);
+                MergeSortRecursive(numbers, mid + 1, upper);
+                Merge(numbers, lower, mid, upper);
+                Console.WriteLine("Your sorted array: ");
+                foreach (int i in numbers)
+                {
+                    Console.WriteLine(i);
+                }
             }
         }
         //static bool LinearSearch(int[] a, int numToFind)
